@@ -47,6 +47,9 @@ INSTALLED_APPS = [
     'users',
     'corsheaders',
 
+    'todo',
+
+
 ]
 
 MIDDLEWARE = [
@@ -135,3 +138,5 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+AUTH_PROJECT_MODEL = 'projects.Project'
+AUTH_TODO_MODEL = 'todos.Todo'
