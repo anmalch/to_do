@@ -13,15 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from webbrowser import get
+
 from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from todo.views import ProjectModelViewSet, TodoModelViewSet
+from todo.views import TodoModelViewSet, ProjectModelViewSet
 from users.views import UserModelViewSet
 
 router = DefaultRouter()
 
+router.register('base', UserModelViewSet, basename='user')
 router.register('users', UserModelViewSet)
 router.register('projects', ProjectModelViewSet)
 router.register('todos', TodoModelViewSet)
@@ -29,5 +32,7 @@ router.register('todos', TodoModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/user', include('rest_framework.urls')),
-    path('api/', include(router.urls))
+    path('', include(router.urls)),
+
+    path('api/project_get', get)
 ]
