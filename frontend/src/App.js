@@ -3,10 +3,12 @@ import React from "react";
 import UserList from "./components/User";
 import MenuList from "./components/Menu";
 import FooterList from "./components/Footer";
-import axios from "axios";
 import ProjectList from "./components/Project";
 import TodoList from "./components/Todo";
+import NotFound404 from "./components/NotFound404";
+import axios from "axios";
 import {BrowserRouter, Route, Routes, Link, Navigate} from "react-router-dom";
+
 
 
 class App extends React.Component{
@@ -69,6 +71,9 @@ class App extends React.Component{
                     <Route exact path='/' element={<UserList users={this.state.users}/>}/>
                     <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
                     <Route exact path='/todos' element={<TodoList todos={this.state.todos}/>}/>
+
+                    <Route path='*' element={<NotFound404/>}/>
+
                 </Routes>
           </BrowserRouter>
 
