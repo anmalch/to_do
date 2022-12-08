@@ -15,6 +15,6 @@ class Todo(models.Model):
     text = models.TextField(blank=True, null=True)
     created_data = models.DateTimeField(default=datetime.now())
     updated_data = models.DateTimeField(default=datetime.now(), blank=True)
-    author = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, unique=True, on_delete=models.CASCADE)
     status = models.BooleanField(default=False)
     is_deleted = models.BooleanField(default=False)

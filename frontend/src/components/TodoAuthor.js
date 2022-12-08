@@ -1,4 +1,5 @@
 import React from "react";
+import {useParams} from "react-router-dom";
 
 
 const TodoItem = ({todo}) => {
@@ -17,7 +18,9 @@ const TodoItem = ({todo}) => {
 
 }
 
-const TodoList = ({todos}) => {
+const TodoAuthor = ({todos}) => {
+    let {userId} = useParams()
+    let filter_todos = todos.filter((todo)=> todo.users.includes(parseInt(userId)))
     return (
         <table>
             <th>Id</th>
@@ -31,4 +34,4 @@ const TodoList = ({todos}) => {
     )
 }
 
-export default TodoList
+export default TodoAuthor
