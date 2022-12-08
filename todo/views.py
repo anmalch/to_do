@@ -9,6 +9,13 @@ from rest_framework.viewsets import ModelViewSet
 from todo.models import Project, Todo
 from todo.serialiazers import ProjectModelSerializer, TodoModelSerializer
 
+from rest_framework.permissions import BasePermission
+
+
+class SuperuserOnly(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_superuser
+
 
 class ProjectModelViewSet(ModelViewSet):
     queryset = Project.objects.all()
