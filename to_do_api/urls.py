@@ -19,12 +19,14 @@ from django.contrib import admin
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
-from todo.views import TodoModelViewSet, ProjectModelViewSet
-from users.views import UserModelViewSet
-from rest_framework.authtoken import views
-router = DefaultRouter()
 
-# router.register('base', UserModelViewSet, basename='user')
+from todo.views import TodoModelViewSet, ProjectModelViewSet
+from users.views import UserModelViewSet, UserListAPIView
+from rest_framework.authtoken import views
+
+
+
+router = DefaultRouter()
 router.register('users', UserModelViewSet)
 router.register('projects', ProjectModelViewSet)
 router.register('todos', TodoModelViewSet)
@@ -35,5 +37,8 @@ urlpatterns = [
     path('api-auth/', include('rest_framework.urls')),
     path('api/', include(router.urls)),
     path('api-token-auth/', views.obtain_auth_token),
+    path('api/<str:version>/users/', UserListAPIView.as_view()),
+
+
 
 ]
