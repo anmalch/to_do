@@ -40,7 +40,11 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
+
+    #Other
+    'django.contrib.staticfiles', # Required for GraphiQL
+    'graphene_django',
+
     'rest_framework',
     'django_filters',
     'users',
@@ -49,6 +53,7 @@ INSTALLED_APPS = [
     'todo',
     'rest_framework.authtoken',
     'drf_yasg',
+
 
 
 ]
@@ -156,5 +161,9 @@ REST_FRAMEWORK = {
     ],
     'DAFAULT_VERSIONING_CLASS': 'rest_framework.versioning.URLPathVersioning',
     #'DAFAULT_VERSIONING_CLASS': 'rest_framework.versioning.AcceptHeaderVersioning',
+
+}
+GRAPHENE = {
+   'SCHEMA': 'library.schema.schema',
 
 }

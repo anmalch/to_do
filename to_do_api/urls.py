@@ -17,10 +17,12 @@ from webbrowser import get
 
 from django.contrib import admin
 from django.urls import path, include
+from graphene_django.views import GraphQLView
 from drf_yasg import openapi
 from rest_framework.permissions import AllowAny
 from rest_framework.routers import DefaultRouter
 from drf_yasg.views import get_schema_view
+
 
 from todo.views import TodoModelViewSet, ProjectModelViewSet
 from users.views import UserModelViewSet, UserListAPIView
@@ -44,7 +46,6 @@ router.register('users', UserModelViewSet)
 router.register('projects', ProjectModelViewSet)
 router.register('todos', TodoModelViewSet)
 
-
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
@@ -53,7 +54,6 @@ urlpatterns = [
     path('api/<str:version>/users/', UserListAPIView.as_view()),
     path('swagger/', schema_view.with_ui('swagger')),
     path('redoc/', schema_view.with_ui('redoc')),
-
-
+    path('graphql/', GraphQLView.as_view(graphiql=True)),
 
 ]
