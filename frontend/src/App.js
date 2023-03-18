@@ -6,11 +6,11 @@ import ProjectList from "./components/Project";
 import TodoAuthor from "./components/TodoAuthor";
 import TodoList from "./components/Todo";
 import NotFound404 from "./components/NotFound404";
-import Auth from "./components/Auth";
 import axios from "axios";
 import {BrowserRouter, Route, Routes, Link, Navigate} from "react-router-dom";
 import LoginForm from "./components/Auth";
 import Cookies from "universal-cookie";
+import TodoForm from "./components/TodoForm";
 
 
 class App extends React.Component{
@@ -23,6 +23,26 @@ class App extends React.Component{
         'token': ''
 
     }
+  }
+
+  create_todo(name, users){
+      const headers = this.get_headers()
+      const data = {name: name, users: users}
+      axios.post(`http://127.0.0.1:8000/todos/`,data, {headers}).then(response => {
+          this.load_data()
+      }).catch(error => {
+          console.log(error)
+          this.setState({todos:[]})
+      })
+  }
+
+  delete_todo(id){
+      const headers = this.get_headers()
+      axios.delete(`http://127.0.0.1:8000/todos/${id}`, {headers}).then(response => {
+          this.load_data()
+      }).catch(error => {
+          console.log(error)
+          this.setState({todos:[]})})
   }
 
   logout(){
@@ -72,21 +92,21 @@ class App extends React.Component{
 
   load_date() {
     const headers = this.get_headers()
-    axios.get('http://127.0.0.1:8000/users/', {headers}).then(response => {
+    axios.get('http://127.0.0.1:8000/api/users/', {headers}).then(response => {
       this.setState(
         {
           'users':response.data
         }
       )
     }).catch(error => console.log(error))
-    axios.get('http://127.0.0.1:8000/projects/', {headers}).then(response => {
+    axios.get('http://127.0.0.1:8000/api/projects/', {headers}).then(response => {
       this.setState(
         {
           'projects':response.data
         }
       )
     }).catch(error => console.log(error))
-    axios.get('http://127.0.0.1:8000/todos/', {headers}).then(response => {
+    axios.get('http://127.0.0.1:8000/api/todos/', {headers}).then(response => {
       this.setState(
         {
           'todos':response.data
@@ -129,7 +149,10 @@ class App extends React.Component{
                         <Route path=':userId' element={<TodoAuthor todo={this.state.todos}/>}/>
                     </Route>
                     <Route exact path='/projects' element={<ProjectList projects={this.state.projects}/>}/>
-                    <Route exact path='/todos' element={<TodoList todos={this.state.todos}/>}/>
+                    <Route exact path='/todos' element={<TodoList todos={this.state.todos} delete_todo={(id)=>this.delete_todo(id)} />}/>
+                    <Route exact path='/todos/create'
+                           element={<TodoForm users={this.state.users}
+                                              create_todo={(name, users) => this.create_todo(name, users)} />}/>
                     <Route exact path='/login' element={<LoginForm get_token={(username, password) =>
                     this.get_token(username, password)}/>}/>
 

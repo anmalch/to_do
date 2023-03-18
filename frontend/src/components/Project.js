@@ -8,6 +8,7 @@ const ProjectItem = ({project}) => {
             <td>{project.id}</td>
             <td>{project.name}</td>
             <td>{project.users}</td>
+
         </tr>
     )
 

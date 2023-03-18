@@ -28,7 +28,7 @@ class ProjectLimitOffsetPagination(LimitOffsetPagination):
     default_limit = 10
 
 
-class ProjectLimitOffsetPaginatonViewSet(ModelViewSet):
+class ProjectLimitOffsetPaginationViewSet(ModelViewSet):
     projects = Project.objects.all()
     serializer_class = ProjectModelSerializer
     pagination_class = ProjectLimitOffsetPagination
