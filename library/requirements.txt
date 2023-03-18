@@ -1,0 +1,9 @@
+Django==3.2.18
+django_filter==22.1
+djangorestframework==3.14.0
+drf_yasg==1.21.4
+graphene==3.2.1
+graphene_django==3.0.0
+mixer==7.2.2
+django-cors-headers==3.13.0
+psycopg2==2.8.6

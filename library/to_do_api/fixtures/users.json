@@ -1,0 +1,36 @@
+[
+  {
+    "model": "users.user",
+    "pk": 1,
+    "fields": {
+      "id": 1,
+      "username": "user_hermione",
+      "first_name": "Hermione",
+      "last_name": "Granger",
+      "email": "granger@gmail.com"
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 2,
+    "fields": {
+      "id": 2,
+      "username": "user_harry",
+      "first_name": "Harry",
+      "last_name": "Potter",
+      "email": "potter@gmail.com"
+
+    }
+  },
+  {
+    "model": "users.user",
+    "pk": 3,
+    "fields": {
+      "id": 3,
+      "username": "user_ron",
+      "first_name": "Ron",
+      "last_name": "Weasley",
+      "email": "weasley@gmail.com"
+    }
+  }
+]
